@@ -3,12 +3,12 @@
    <head>
     <title>Snapscroll</title>
     <meta charset="utf-8">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <style>
       body {
         margin: 0;
         color: white;
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Open Sans', 'Arial';
       }
       div {
         box-sizing: border-box;
@@ -88,8 +88,8 @@
   <body ng-app="snapscroll" ng-controller="MainController" keyboard-keys>
     <div class="main" snapscroll fit-window-height snap-index="snapIndex">
       <div>
-        <h1>angular-snapscroll</h1>
-        <p>Snapscroll is an angular directive that provides scroll-and-snap functionality for vertical scrolling, similar to <a href="http://alvarotrigo.com/fullPage/" target="_blank">fullPage.js</a>.</p>
+        <h1>Snapscroll</h1>
+        <p>AngularJS directive that provides scroll-and-snap functionality, similar to fullpage.js</p>
         <ol>
           <li>JS-only implementation</li>
           <li>Requires only angular core</li>
@@ -173,8 +173,8 @@
       <li ng-click="snapIndex=3" ng-class="{active: snapIndex == 3}"></li>
       <li ng-click="snapIndex=4" ng-class="{active: snapIndex == 4}"></li>
     </ul>
-    <script src="./bower_components/angular/angular.min.js"></script>
-    <script src="./bower_components/angular-snapscroll/dist/snapscroll.min.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../dist/snapscroll.min.js"></script>
     <script>
       var app = angular.module('snapscroll');
       
