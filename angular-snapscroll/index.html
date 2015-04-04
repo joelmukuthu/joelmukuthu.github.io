@@ -113,7 +113,7 @@
     </style>
    </head>
   <body ng-app="app" ng-controller="MainController" keyboard-keys>
-    <div class="main" snapscroll fit-window-height snap-index="snapIndex" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div class="main" snapscroll fit-window-height snap-index="snapIndex" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
       <div>
         <h1>angular-snapscroll</h1>
         <p>angular-snapscroll provides vertical scroll-and-snap functionality for angular, similar to <a href="http://alvarotrigo.com/fullPage/" target="_blank">fullPage.js</a>.</p>
@@ -122,47 +122,44 @@
           <li>Requires only angular core</li>
           <li>5.5kB when minified, 2.0kB when gzipped</li>
         </ol>
-        <h2>Intro</h2>
         <p>This is a suite of snapscroll examples that demonstrantes:</p>
         <ul>
           <li>full-page snapscroll (i.e. fitWindowHeight)</li>
           <li>keyboard navigation (try pressing the up and down arrow keys)</li>
           <li>resetting current snap position after a manual scroll (try to scroll by dragging the scrollbar)</li>
-          <li>snapIndex binding</li>
+          <li>snapIndex binding (the pagination showing on the right)</li>
+          <li>persisting snapIndex on page reload (using window.location.hash)</li>
           <li>mobile support (using <a href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
+          <li><a href="#" ng-click="snapIndex=1">nested snapscrolls</a></li>
+          <li><a href="#" ng-click="snapIndex=2">before and after callbacks</a></li>
         </ul>
-        <h3>Examples</h3>
-        <ol class="examples">
-          <li><a href="#" ng-click="snapIndex=1">Nested snapscrolls</a></li>
-          <li><a href="#" ng-click="snapIndex=2">Callbacks</a></li>
-        </ol>
       </div>
       <div>
         <h3>Nested snapscrolls</h3>
         <p>Can be nested, side by side etc and won't interfere with each other. The first nested snapscroll below also demostrates how to keep vertical swiping localized to a nested snapscroll instance.</p>
         <div ng-controller="NestedSnapscrollController">
           <div class="nested" style="height: 200px" snapscroll snap-index="nestedSnapIndex" ng-swipe-up="swipeUp($event)" ng-swipe-down="swipeDown($event)">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
           </div>
         </div>
         <div class="clearfix">
           <div class="nested" style="height: 200px" snapscroll>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
           </div>
           <div class="nested" style="height: 200px" snapscroll>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
           </div>
         </div>
       </div>
@@ -172,11 +169,11 @@
         <p>Returning false in the beforeSnap callback disables snapping. In this example, it's impossible to snap to the last snap (unless by scrolling manually).</p>
         <p>Note: callbacks are executed on the initial snap on page load and also after a manual scroll.</p>
         <div class="nested" style="height: 200px" snapscroll before-snap="beforeCallback(snapIndex)" after-snap="afterCallback(snapIndex)">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
         </div>
         <div class="clearfix">
           <div>
@@ -234,8 +231,14 @@
         }
       }]);
 
-      app.controller('MainController', ['$scope', function ($scope) {
-        $scope.snapIndex = 0;
+      app.controller('MainController', ['$scope', '$window', function ($scope, $window) {
+        var index = parseInt($window.location.hash.slice(1), 10);
+        $scope.snapAnimation = false;
+        if (index && angular.isNumber(index)) {
+          $scope.snapIndex = index;
+        } else {
+          $scope.snapIndex = 0;
+        }
         $scope.$on('arrow-up', function () {
           $scope.$apply(function () {
             $scope.snapIndex--;
@@ -251,6 +254,10 @@
         };
         $scope.swipeDown = function () {
           $scope.snapIndex--;
+        };
+        $scope.afterSnap = function (snapIndex) {
+          $scope.snapAnimation = true;
+          $window.location.hash = snapIndex;
         };
       }]);
 
@@ -270,14 +277,21 @@
       }]);
 
       app.controller('NestedSnapscrollController', ['$scope', function ($scope) {
+        // these min and max values are only hardcoded for demonstration
+        var minNestedSnapIndex = 0,
+            maxNestedSnapIndex = 4;
         $scope.nestedSnapIndex = 0;
         $scope.swipeUp = function ($event) {
-          $scope.nestedSnapIndex++;
-          $event.stopPropagation();
+          if ($scope.nestedSnapIndex + 1 <= maxNestedSnapIndex) {
+            $scope.nestedSnapIndex++;
+            $event.stopPropagation();
+          }
         };
         $scope.swipeDown = function ($event) {
-          $scope.nestedSnapIndex--;
-          $event.stopPropagation();
+          if ($scope.nestedSnapIndex - 1 >= minNestedSnapIndex) {
+            $scope.nestedSnapIndex--;
+            $event.stopPropagation();
+          }
         };
       }]);
     </script>
