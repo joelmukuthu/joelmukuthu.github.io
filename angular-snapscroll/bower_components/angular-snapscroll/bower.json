@@ -1,6 +1,6 @@
 {
   "name": "angular-snapscroll",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "authors": [
     "Joel Mukuthu <joelmukuthu@gmail.com>"
   ],
@@ -17,6 +17,7 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
+    "src",
     "node_modules",
     "bower_components",
     "Gruntfile.js",

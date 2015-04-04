@@ -1,4 +1,4 @@
-# angular-snapscroll v0.2.0 [![Build Status](https://travis-ci.org/joelmukuthu/angular-snapscroll.svg?branch=master)](https://travis-ci.org/joelmukuthu/angular-snapscroll) [![Coverage Status](https://coveralls.io/repos/joelmukuthu/angular-snapscroll/badge.svg)](https://coveralls.io/r/joelmukuthu/angular-snapscroll)
+# angular-snapscroll v0.2.2 [![Build Status](https://travis-ci.org/joelmukuthu/angular-snapscroll.svg?branch=master)](https://travis-ci.org/joelmukuthu/angular-snapscroll) [![Coverage Status](https://coveralls.io/repos/joelmukuthu/angular-snapscroll/badge.svg)](https://coveralls.io/r/joelmukuthu/angular-snapscroll)
 [AngularJS](http://angularjs.org) provides scroll-and-snap functionality for vertical scrolling, similar to [fullPage.js](http://alvarotrigo.com/fullPage/).
 
 - JS-only implementation
@@ -15,7 +15,7 @@ bower install angular-snapscroll
 ```
 And link to the main JS file:
 ```html
-<script src="/bower_components/angular-snapscroll/dist/snapscroll.js"></script>
+<script src="/bower_components/angular-snapscroll/dist/angular-snapscroll.js"></script>
 ```
 Or download/clone this repo then link to the main JS file.
 
