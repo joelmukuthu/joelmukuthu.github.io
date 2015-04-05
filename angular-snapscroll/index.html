@@ -116,27 +116,27 @@
     <div class="main" snapscroll fit-window-height snap-index="snapIndex" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
       <div>
         <h1>angular-snapscroll</h1>
-        <p>angular-snapscroll provides vertical scroll-and-snap functionality for angular, similar to <a href="http://alvarotrigo.com/fullPage/" target="_blank">fullPage.js</a>.</p>
+        <p>angular-snapscroll adds vertical scroll-and-snap functionality to angular.</p>
         <ol>
           <li>JS-only implementation</li>
           <li>Requires only angular core</li>
-          <li>5.5kB when minified, 2.0kB when gzipped</li>
+          <li>5.7kB when minified, 2.1kB when gzipped</li>
         </ol>
         <p>This is a suite of snapscroll examples that demonstrantes:</p>
         <ul>
-          <li>full-page snapscroll (i.e. fitWindowHeight)</li>
+          <li>full-page snapscroll (fit-window-height attribute)</li>
           <li>keyboard navigation (try pressing the up and down arrow keys)</li>
           <li>resetting current snap position after a manual scroll (try to scroll by dragging the scrollbar)</li>
           <li>snapIndex binding (the pagination showing on the right)</li>
           <li>persisting snapIndex on page reload (using window.location.hash)</li>
-          <li>mobile support (using <a href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
+          <li>touch support (using <a href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
           <li><a href="#" ng-click="snapIndex=1">nested snapscrolls</a></li>
           <li><a href="#" ng-click="snapIndex=2">before and after callbacks</a></li>
         </ul>
       </div>
       <div>
         <h3>Nested snapscrolls</h3>
-        <p>Can be nested, side by side etc and won't interfere with each other. The first nested snapscroll below also demostrates how to keep vertical swiping localized to a nested snapscroll instance.</p>
+        <p>Instances can be nested, side by side etc and won't interfere with each other. The first nested snapscroll below also demostrates how to keep vertical swipe gestures localized to a nested snapscroll instance.</p>
         <div ng-controller="NestedSnapscrollController">
           <div class="nested" style="height: 200px" snapscroll snap-index="nestedSnapIndex" ng-swipe-up="swipeUp($event)" ng-swipe-down="swipeDown($event)">
             <div>1</div>
@@ -233,7 +233,7 @@
 
       app.controller('MainController', ['$scope', '$window', function ($scope, $window) {
         var index = parseInt($window.location.hash.slice(1), 10);
-        $scope.snapAnimation = false;
+        $scope.snapAnimation = false; // turn animation off for the initial snap on page load
         if (index && angular.isNumber(index)) {
           $scope.snapIndex = index;
         } else {
@@ -256,7 +256,7 @@
           $scope.snapIndex--;
         };
         $scope.afterSnap = function (snapIndex) {
-          $scope.snapAnimation = true;
+          $scope.snapAnimation = true; // turn animations on after the initial snap
           $window.location.hash = snapIndex;
         };
       }]);
@@ -286,12 +286,14 @@
             $scope.nestedSnapIndex++;
             $event.stopPropagation();
           }
+          // else, allow bubbling up since this instance is already scrolled to the end
         };
         $scope.swipeDown = function ($event) {
           if ($scope.nestedSnapIndex - 1 >= minNestedSnapIndex) {
             $scope.nestedSnapIndex--;
             $event.stopPropagation();
           }
+          // else, allow bubbling up since this instance is already scrolled to the end
         };
       }]);
     </script>
