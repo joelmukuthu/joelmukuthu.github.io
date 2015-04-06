@@ -46,10 +46,24 @@
         color: aliceblue;
       }
       .nested {
+        height: 200px;
         background: rgb(5, 159, 179);
       }
-      .nested > div {
+      .nested div {
+        text-align: center;
+        line-height: 200px;
         border: 5px rgb(10, 84, 92) solid;
+      }
+      .nested span {
+        width: 128px;
+        font-size: 5em;
+        font-weight: bold;
+        margin-top: -10px;
+        line-height: 128px;
+        border-radius: 100%;
+        display: inline-block;
+        vertical-align: middle;
+        border: 10px #fff solid;
       }
       .clearfix {
         overflow: hidden;
@@ -138,28 +152,28 @@
         <h3>Nested snapscrolls</h3>
         <p>Instances can be nested, side by side etc and won't interfere with each other. The first nested snapscroll below also demostrates how to keep vertical swipe gestures localized to a nested snapscroll instance.</p>
         <div ng-controller="NestedSnapscrollController">
-          <div class="nested" style="height: 200px" snapscroll snap-index="nestedSnapIndex" ng-swipe-up="swipeUp($event)" ng-swipe-down="swipeDown($event)">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
+          <div class="nested" snapscroll snap-index="nestedSnapIndex" ng-swipe-up="swipeUp($event)" ng-swipe-down="swipeDown($event)">
+            <div><span>1</span></div>
+            <div><span>2</span></div>
+            <div><span>3</span></div>
+            <div><span>4</span></div>
+            <div><span>5</span></div>
           </div>
         </div>
         <div class="clearfix">
-          <div class="nested" style="height: 200px" snapscroll>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
+          <div class="nested" snapscroll>
+            <div><span>1</span></div>
+            <div><span>2</span></div>
+            <div><span>3</span></div>
+            <div><span>4</span></div>
+            <div><span>5</span></div>
           </div>
-          <div class="nested" style="height: 200px" snapscroll>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
+          <div class="nested" snapscroll>
+            <div><span>1</span></div>
+            <div><span>2</span></div>
+            <div><span>3</span></div>
+            <div><span>4</span></div>
+            <div><span>5</span></div>
           </div>
         </div>
       </div>
@@ -168,12 +182,12 @@
         <p>Callbacks are passed a snapIndex parameter. In the beforeSnap callback, this is the index being snapped to while in the afterSnap callback, it's the index just snapped to.</p>
         <p>Returning false in the beforeSnap callback disables snapping. In this example, it's impossible to snap to the last snap (unless by scrolling manually).</p>
         <p>Note: callbacks are executed on the initial snap on page load and also after a manual scroll.</p>
-        <div class="nested" style="height: 200px" snapscroll before-snap="beforeCallback(snapIndex)" after-snap="afterCallback(snapIndex)">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
+        <div class="nested" snapscroll before-snap="beforeCallback(snapIndex)" after-snap="afterCallback(snapIndex)">
+            <div><span>1</span></div>
+            <div><span>2</span></div>
+            <div><span>3</span></div>
+            <div><span>4</span></div>
+            <div><span>5</span></div>
         </div>
         <div class="clearfix">
           <div>
