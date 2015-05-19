@@ -1,12 +1,12 @@
 {
   "name": "angular-snapscroll",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "authors": [
     "Joel Mukuthu <joelmukuthu@gmail.com>"
   ],
-  "description": "angular module that provides scroll-and-snap functionality similar to fullPage.js",
+  "description": "Vertical scroll-and-snap functionality in angular",
   "main": [
-    "dist/snapscroll.js"
+    "dist/angular-snapscroll.js"
   ],
   "keywords": [
     "snapscroll",
@@ -31,17 +31,14 @@
     "angular-mocks": "~1.3.15"
   },
   "homepage": "https://github.com/joelmukuthu/angular-snapscroll.git",
-  "resolutions": {
-    "angular": "~1.3.15",
-    "angular-mocks": "~1.3.15"
-  },
-  "_release": "0.2.2",
+  "_release": "0.2.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.2",
-    "commit": "1cea5f00934c14e85c52c7fd335ab7aff9b364ea"
+    "tag": "v0.2.4",
+    "commit": "560eecae63feb10b71efeddaa9ac4a42aedac0d6"
   },
   "_source": "git://github.com/joelmukuthu/angular-snapscroll.git",
-  "_target": "*",
-  "_originalSource": "joelmukuthu/angular-snapscroll"
+  "_target": "~0.2.4",
+  "_originalSource": "angular-snapscroll",
+  "_direct": true
 }
