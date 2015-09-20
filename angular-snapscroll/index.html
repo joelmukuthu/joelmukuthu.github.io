@@ -146,6 +146,7 @@
           <li>touch support (using <a href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
           <li><a href="#" ng-click="snapIndex=1">nested snapscrolls</a></li>
           <li><a href="#" ng-click="snapIndex=2">before and after callbacks</a></li>
+          <li><a href="#" ng-click="snapIndex=3">dynamically added child elements (using ng-repeat)</a></li>
         </ul>
       </div>
       <div>
@@ -204,15 +205,21 @@
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+        <h3>Dynamically added child elements</h3>
+        <p>Snapscroll doesn't set the initial height of dynamically added child elements. Using ngRepeat however, you can set
+          the child elments' height at creation time by taking advantage of the snapHeight binding, after which snapscroll will
+          take over and update their heights whenever snapHeight changes. Example below:</p>
+        <div class="nested" snapscroll="" snap-height="snapHeight">
+          <div ng-repeat="n in [1, 2, 3, 4, 5]" style="height:{{$parent.snapHeight}}px"><span>{{n}}</span></div>
+        </div>
+      </div>
       <div></div>
     </div>
     <ul class="indicators">
-      <li><a href="#" ng-click="snapIndex=0"><span ng-class="{active: snapIndex == 0}"></span></a></li>
-      <li><a href="#" ng-click="snapIndex=1"><span ng-class="{active: snapIndex == 1}"></span></a></li>
-      <li><a href="#" ng-click="snapIndex=2"><span ng-class="{active: snapIndex == 2}"></span></a></li>
-      <li><a href="#" ng-click="snapIndex=3"><span ng-class="{active: snapIndex == 3}"></span></a></li>
-      <li><a href="#" ng-click="snapIndex=4"><span ng-class="{active: snapIndex == 4}"></span></a></li>
+      <li ng-repeat="n in [0,1,2,3,4]">
+        <a href="#" ng-click="$parent.snapIndex=n"><span ng-class="{active: snapIndex == n}"></span></a>
+      </li>
     </ul>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-swipe/dist/angular-swipe.min.js"></script>
