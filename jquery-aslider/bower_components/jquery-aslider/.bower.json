@@ -1,0 +1,36 @@
+{
+  "name": "jquery-aslider",
+  "version": "1.2.0",
+  "homepage": "https://github.com/joelmukuthu/jquery-aslider",
+  "authors": [
+    "Joel Mukuthu <joelmukuthu@gmail.com>"
+  ],
+  "description": "slider plugin for jQuery",
+  "main": "jquery-aslider.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "jquery",
+    "slider",
+    "aslider"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "Gruntfile.js"
+  ],
+  "_release": "1.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.0",
+    "commit": "180460793219524a421c4bd80a2e88b0b49381c1"
+  },
+  "_source": "git://github.com/joelmukuthu/aslider.git",
+  "_target": "~1.2.0",
+  "_originalSource": "jquery-aslider",
+  "_direct": true
+}

@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+  <head>
+    <title>jquery-aslider</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <style>
+      body {
+        margin: 0;
+        color: white;
+        font-size: 0.75em;
+        font-family: 'Open Sans', sans-serif;
+        background: rgb(10, 84, 92);
+      }
+
+      @media screen and (min-width: 768px) {
+        body {
+          font-size: 1em;
+        }
+      }
+
+      #frame {
+        position: fixed;
+        top: 5%;
+        bottom: 5%;
+        right: 5%;
+        left: 5%;
+        overflow: hidden;
+        border: 20px rgba(0, 0, 0, 0.5) solid;
+        border-radius: 10px;
+      }
+
+      #screen {
+        position: absolute;
+        width: 300%;
+        height: 300%;
+        background: white;
+      }
+
+      #text {
+        padding: 2%;
+        box-sizing: border-box;
+        background: rgb(10, 84, 92);
+      }
+
+      #text h1 {
+        margin-top: 0;
+      }
+
+      #text li {
+        list-style-position: inside;
+      }
+
+      #screen img, #text {
+        float: left;
+        width: 33.33%;
+        height: 33.33%;
+      }
+
+      #screen img {
+        display: block;
+        opacity: 0;
+      }
+
+      #indicators {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        width: 48px;
+        height: 48px;
+        line-height: 1;
+        padding: 2px;
+        background: rgb(5, 57, 63);
+        opacity: 0.9;
+        font-size: 0;
+      }
+
+      #indicators span {
+        background: white;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 2px;
+        cursor: pointer;
+      }
+
+      #indicators .active {
+        background: orange;
+      }
+
+      #loader {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      #spinner {
+        width: 40px;
+        height: 40px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #double-bounce1, #double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #333;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+        animation: sk-bounce 2.0s infinite ease-in-out;
+      }
+
+      #double-bounce2 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+      }
+
+      @-webkit-keyframes sk-bounce {
+        0%, 100% { -webkit-transform: scale(0.0) }
+        50% { -webkit-transform: scale(1.0) }
+      }
+
+      @keyframes sk-bounce {
+        0%, 100% { 
+          transform: scale(0.0);
+          -webkit-transform: scale(0.0);
+        } 50% { 
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="frame">
+      <div id="screen">
+        <div id="text">
+          <h1>jquery-aslider</h1>
+          <h3>slider plugin for jQuery</h3>
+          <p>to navigate the pages:</p>
+          <ul>
+            <li>use the keyboard arrow keys</li>
+            <li>click on the pagination (top right)</li>
+          </ul>
+          <p>view page source to see the code for this demo.</p>
+        </div>
+      </div>
+      <div id="loader">
+        <div id="spinner">
+          <div id="double-bounce1"></div>
+          <div id="double-bounce2"></div>
+        </div>
+      </div>
+      <div id="indicators">
+        <span class="active"></span>
+      </div>
+    </div>
+
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/jquery-aslider/jquery-aslider.min.js"></script>
+
+    <script>
+      $(function () {
+        var frame = $('#frame'),
+            screen = $('#screen', frame),
+            loader = $('#loader', frame),
+            indicators = $('#indicators', frame);
+
+        var imageWidth = loader.width(),
+            imageHeight = loader.height(),
+            totalImages = 8,
+            imagesLoaded = 0,
+            imageTypes = [
+              'animals',
+              'arch',
+              'nature',
+              'people',
+              'tech',
+              'any'
+            ];
+
+        function imageLoaded() {
+          imagesLoaded++;
+          $(this).animate({
+            opacity: 1
+          });
+          if (imagesLoaded === totalImages) {
+            loader.fadeOut();
+            indicators.fadeIn();
+          }
+        }
+
+        for (var i = 0; i < totalImages; i++) {
+          indicators.append('<span>');
+          screen.append($('<img>', {
+            src: 'http://placeimg.com/' + imageWidth + '/' + imageHeight + '/' + imageTypes[Math.floor(Math.random()*imageTypes.length)]
+          }).on('load', imageLoaded));
+        }
+
+        var indicatorSpans = $('span', indicators);
+
+        var slider = frame.aslider({
+          keys: true,
+          pageHolder: screen,
+          afterSlide: function (index) {
+            indicatorSpans.removeClass('active').eq(index).addClass('active');
+          }
+        }).data('aslider');
+
+        indicators.on('click', 'span', function () {
+          var index = indicatorSpans.index(this);
+          slider.seek(index);
+        });
+      });
+    </script>
+  </body>
+</html>
