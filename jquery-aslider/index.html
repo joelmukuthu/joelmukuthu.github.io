@@ -47,6 +47,12 @@
         transition: transform 400ms ease-in-out;
       }
 
+      #screen > div {
+        float: left;
+        width: 33.33%;
+        height: 33.33%;
+      }
+
       #text {
         padding: 2%;
         box-sizing: border-box;
@@ -61,16 +67,25 @@
         list-style-position: inside;
       }
 
-      #screen img, #text {
-        float: left;
-        width: 33.33%;
-        height: 33.33%;
+      #screen #text, #screen .shadow {
         box-shadow: inset 0px 0px 20px -1px rgba(0, 0, 0, 0.75);
+      }
+
+      #screen .img {
+        opacity: 0;
+        position: relative;
+      }
+
+      #screen .shadow {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
       }
 
       #screen img {
         display: block;
-        opacity: 0;
       }
 
       #indicators {
@@ -208,7 +223,7 @@
 
         function imageLoaded() {
           imagesLoaded++;
-          $(this).animate({
+          $(this).parent().animate({
             opacity: 1
           });
           if (imagesLoaded === totalImages) {
@@ -219,9 +234,17 @@
 
         for (var i = 0; i < totalImages; i++) {
           indicators.append('<span>');
-          screen.append($('<img>', {
-            src: '//placeimg.com/' + imageWidth + '/' + imageHeight + '/' + imageTypes[Math.floor(Math.random()*imageTypes.length)]
-          }).on('load', imageLoaded));
+          var cont = $('<div>', {
+            class: 'img'
+          });
+          var img = $('<img>', {
+            src: '//placeimg.com/' + imageWidth + '/' + imageHeight + '/' +
+                 imageTypes[Math.floor(Math.random()*imageTypes.length)]
+          }).on('load', imageLoaded);
+          var shadow = $('<div>', {
+            class: 'shadow'
+          });
+          screen.append(cont.append(img, shadow));
         }
 
         var indicatorSpans = $('span', indicators);
