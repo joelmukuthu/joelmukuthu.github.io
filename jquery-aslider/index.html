@@ -36,6 +36,7 @@
         width: 300%;
         height: 300%;
         background: white;
+        transition: transform 400ms ease-in-out;
       }
 
       #text {
@@ -214,6 +215,7 @@
         var slider = frame.aslider({
           keys: true,
           pageHolder: screen,
+          property: 'transform',
           afterSlide: function (index) {
             indicatorSpans.removeClass('active').eq(index).addClass('active');
           }
