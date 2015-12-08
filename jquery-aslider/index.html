@@ -4,8 +4,16 @@
     <title>jquery-aslider</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
     <style>
+      .right .github-fork-ribbon {
+        background-color: #f80;
+      }
+
       body {
         margin: 0;
         color: white;
@@ -118,7 +126,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        
+
         -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
         animation: sk-bounce 2.0s infinite ease-in-out;
       }
@@ -134,10 +142,10 @@
       }
 
       @keyframes sk-bounce {
-        0%, 100% { 
+        0%, 100% {
           transform: scale(0.0);
           -webkit-transform: scale(0.0);
-        } 50% { 
+        } 50% {
           transform: scale(1.0);
           -webkit-transform: scale(1.0);
         }
@@ -145,6 +153,11 @@
     </style>
   </head>
   <body>
+    <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/joelmukuthu/jquery-aslider">Fork me on GitHub</a>
+        </div>
+    </div>
     <div id="frame">
       <div id="screen">
         <div id="text">

@@ -4,8 +4,20 @@
     <title>angular-snapscroll</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
     <style>
+      .github-fork-ribbon-wrapper.right {
+        right: 15px;
+      }
+
+      .right .github-fork-ribbon {
+        background-color: #f80;
+      }
+
       body {
         margin: 0;
         color: white;
@@ -127,6 +139,11 @@
     </style>
    </head>
   <body ng-app="app" ng-controller="MainController" keyboard-keys>
+    <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/joelmukuthu/angular-snapscroll">Fork me on GitHub</a>
+        </div>
+    </div>
     <div class="main" snapscroll fit-window-height snap-index="snapIndex" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
       <div>
         <h1>angular-snapscroll</h1>
