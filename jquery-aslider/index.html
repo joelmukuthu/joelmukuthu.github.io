@@ -180,6 +180,18 @@
         <div id="text">
           <h1>jquery-aslider</h1>
           <h3>slider plugin for jQuery</h3>
+          <p>features:</p>
+          <ul>
+            <li>supports CSS transitions</li>
+            <li>supports grid (vertical, horizontal and diagonal) transitions</li>
+            <li>plays nice with responsive designs</li>
+            <li>supports items (pages) of unequal sizes</li>
+            <li>provides an API for you to programmatically initiate transitioning to an item</li>
+            <li>does not add unnecessary CSS to the elements</li>
+            <li>built in support for up, down, left, right, previous, next, first and last buttons</li>
+            <li>built in support for keyboard navigation</li>
+            <li>supports before and after-slide callbacks</li>
+          </ul>
           <p>to navigate the pages:</p>
           <ul>
             <li>use the keyboard arrow keys</li>
@@ -225,9 +237,10 @@
         function initSlider() {
           var indicatorSpans = $('span', indicators);
           var slider = frame.aslider({
-            keys: true,
-            pageHolder: screen,
-            property: 'transform',
+            rewind: true,
+            keyboardArrowKeys: true,
+            pageContainer: screen,
+            cssTransitions: true,
             afterSlide: function (index) {
               indicatorSpans.removeClass('active').eq(index).addClass('active');
             }
