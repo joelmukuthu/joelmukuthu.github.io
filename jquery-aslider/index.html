@@ -195,6 +195,7 @@
           <p>to navigate the pages:</p>
           <ul>
             <li>use the keyboard arrow keys</li>
+            <li>swipe up/right/down/left</li>
             <li>click on the pagination (top right)</li>
           </ul>
           <p>view page source to see the code for this demo.</p>
@@ -212,6 +213,7 @@
     </div>
 
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/hammerjs/hammer.min.js"></script>
     <script src="./bower_components/jquery-aslider/jquery-aslider.min.js"></script>
 
     <script>
@@ -250,6 +252,12 @@
             var index = indicatorSpans.index(this);
             slider.seek(index);
           });
+
+          var hammertime = new Hammer(frame.get(0));
+          hammertime.on('swipeup', slider.down.bind(slider));
+          hammertime.on('swipedown', slider.up.bind(slider));
+          hammertime.on('swipeleft', slider.right.bind(slider));
+          hammertime.on('swiperight', slider.left.bind(slider));
         }
 
         function imageLoaded() {
