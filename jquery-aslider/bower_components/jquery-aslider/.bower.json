@@ -1,6 +1,6 @@
 {
   "name": "jquery-aslider",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "homepage": "https://github.com/joelmukuthu/jquery-aslider",
   "authors": [
     "Joel Mukuthu <joelmukuthu@gmail.com>"
@@ -26,14 +26,14 @@
     "test",
     "Gruntfile.js"
   ],
-  "_release": "2.0.2",
+  "_release": "2.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.2",
-    "commit": "7e3dc302dbe48f17fc4e9bb4153163f606a2975f"
+    "tag": "v2.0.3",
+    "commit": "5c7eb36f6732cd8bb9a824f835553f55542a0cd0"
   },
   "_source": "git://github.com/joelmukuthu/jquery-aslider.git",
-  "_target": "~2.0.2",
+  "_target": "~2.0.3",
   "_originalSource": "jquery-aslider",
   "_direct": true
 }
