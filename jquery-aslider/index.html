@@ -284,6 +284,11 @@
           });
 
           var hammertime = new Hammer(frame.get(0));
+
+          hammertime.get('swipe').set({
+            direction: Hammer.DIRECTION_ALL
+          });
+
           hammertime.on('swipeup', slider.down.bind(slider));
           hammertime.on('swipedown', slider.up.bind(slider));
           hammertime.on('swipeleft', slider.right.bind(slider));
