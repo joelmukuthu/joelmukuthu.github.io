@@ -17,7 +17,7 @@
       body {
         margin: 0;
         color: white;
-        font-size: 0.75em;
+        font-size: 0.65em;
         font-family: 'Open Sans', sans-serif;
         background: rgb(10, 84, 92);
       }
@@ -25,6 +25,27 @@
       @media screen and (min-width: 768px) {
         body {
           font-size: 1em;
+        }
+
+        .clearfix {
+          font-size: 0;
+        }
+
+        .clearfix > div {
+          font-size: 16px;
+          line-height: 20px;
+          display: inline-block;
+          vertical-align: top;
+        }
+
+        .clearfix .left {
+          width: 60%;
+          box-sizing: border-box;
+          padding-right: 5%;
+        }
+
+        .clearfix .right {
+          width: 40%;
         }
       }
 
@@ -54,13 +75,17 @@
       }
 
       #text {
-        padding: 2%;
+        padding: 1%;
         box-sizing: border-box;
         background: rgb(10, 84, 92);
       }
 
       #text h1 {
         margin-top: 0;
+      }
+
+      #text ul {
+        padding: 0;
       }
 
       #text li {
@@ -180,24 +205,29 @@
         <div id="text">
           <h1>jquery-aslider</h1>
           <h3>slider plugin for jQuery</h3>
-          <p>features:</p>
-          <ul>
-            <li>supports CSS transitions</li>
-            <li>supports grid (vertical, horizontal and diagonal) transitions</li>
-            <li>plays nice with responsive designs</li>
-            <li>supports items (pages) of unequal sizes</li>
-            <li>provides an API for you to programmatically initiate transitioning to an item</li>
-            <li>does not add unnecessary CSS to the elements</li>
-            <li>built in support for up, down, left, right, previous, next, first and last buttons</li>
-            <li>built in support for keyboard navigation</li>
-            <li>supports before and after-slide callbacks</li>
-          </ul>
-          <p>to navigate the pages:</p>
-          <ul>
-            <li>use the keyboard arrow keys</li>
-            <li>swipe up/right/down/left</li>
-            <li>click on the pagination (top right)</li>
-          </ul>
+          <div class="clearfix">
+            <div class="left">
+              <p>supports:</p>
+              <ul>
+                <li>CSS transitions</li>
+                <li>grid (vertical, horizontal and diagonal) transitions</li>
+                <li>responsive designs</li>
+                <li>items (pages) of unequal sizes</li>
+                <li>API for you to initiate transitioning (e.g. to add touch support)</li>
+                <li>up, down, left, right, previous, next, first and last buttons</li>
+                <li>keyboard navigation</li>
+                <li>before-slide and after-slide callbacks</li>
+              </ul>
+            </div>
+            <div class="right">
+              <p>to navigate the pages:</p>
+              <ul>
+                <li>use the keyboard arrow keys</li>
+                <li>swipe up/right/down/left</li>
+                <li>click on the pagination (top right)</li>
+              </ul>
+            </div>
+          </div>
           <p>view page source to see the code for this demo.</p>
         </div>
       </div>
