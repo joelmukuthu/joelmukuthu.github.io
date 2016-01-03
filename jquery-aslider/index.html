@@ -136,10 +136,21 @@
         height: 12px;
         margin: 2px;
         cursor: pointer;
+        opacity: 0.9;
+      }
+
+      #indicators span:hover {
+        opacity: 1;
       }
 
       #indicators .active {
-        background: orange;
+        background: #f80;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        z-index: 1;
+        opacity: 1;
+        transition: transform 400ms ease-in-out;
       }
 
       #loader {
@@ -238,7 +249,7 @@
         </div>
       </div>
       <div id="indicators">
-        <span class="active"></span>
+        <span></span>
       </div>
     </div>
 
@@ -251,7 +262,8 @@
         var frame = $('#frame'),
             screen = $('#screen', frame),
             loader = $('#loader', frame),
-            indicators = $('#indicators', frame);
+            indicators = $('#indicators', frame),
+            activePageIndicator = $('<span>', { class: 'active' });
 
         var imageWidth = loader.width(),
             imageHeight = loader.height(),
@@ -267,17 +279,25 @@
             ];
 
         function initSlider() {
-          var indicatorSpans = $('span', indicators);
           var slider = frame.aslider({
             keyboardArrowKeys: true,
             pageContainer: screen,
             cssTransitions: true,
-            afterSlide: function (index) {
-              indicatorSpans.removeClass('active').eq(index).addClass('active');
+            beforeSlide: function (index) {
+              var coordinates = this._getCoordinates(index),
+                  width = activePageIndicator.width(),
+                  height = activePageIndicator.height(),
+                  margin = parseInt(activePageIndicator.css('marginBottom'), 10) * 2,
+                  top = coordinates.row * height + coordinates.row * margin,
+                  left = coordinates.column * height + coordinates.column * margin;
+              activePageIndicator.css({
+                transform: 'translate(' + left + 'px, ' + top + 'px)'
+              });
             }
           }).data('aslider');
 
-          indicators.on('click', 'span', function () {
+          var indicatorSpans = $('span:not(.active)', indicators);
+          indicators.on('click', 'span:not(.active)', function () {
             var index = indicatorSpans.index(this);
             slider.seek(index);
           });
@@ -317,6 +337,8 @@
           });
           screen.append(cont.append(img, shadow));
         }
+
+        indicators.append(activePageIndicator);
       });
 
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
