@@ -1,4 +1,4 @@
-# angular-snapscroll [![Build Status](https://travis-ci.org/joelmukuthu/angular-snapscroll.svg?branch=master)](https://travis-ci.org/joelmukuthu/angular-snapscroll) [![Coverage Status](https://coveralls.io/repos/joelmukuthu/angular-snapscroll/badge.svg)](https://coveralls.io/r/joelmukuthu/angular-snapscroll) [![Bower version](https://badge.fury.io/bo/angular-snapscroll.svg)](http://badge.fury.io/bo/angular-snapscroll)
+# angular-snapscroll [![Build Status](https://travis-ci.org/joelmukuthu/angular-snapscroll.svg?branch=master)](https://travis-ci.org/joelmukuthu/angular-snapscroll) [![Coverage Status](https://coveralls.io/repos/joelmukuthu/angular-snapscroll/badge.svg)](https://coveralls.io/r/joelmukuthu/angular-snapscroll) [![Bower version](https://badge.fury.io/bo/angular-snapscroll.svg)](http://badge.fury.io/bo/angular-snapscroll) [![NPM version](https://badge.fury.io/js/angular-snapscroll.svg)](http://badge.fury.io/js/angular-snapscroll)
 angular-snapscroll adds vertical scroll-and-snap functionality to angular. [Demo](http://joelmukuthu.github.io/angular-snapscroll/)
 
 - JS-only implementation
@@ -10,15 +10,16 @@ Install with bower:
 ```sh
 bower install angular-snapscroll
 ```
+Or with npm:
+```sh
+npm install angular-snapscroll
+```
 Or simply download the [latest release](https://github.com/joelmukuthu/angular-snapscroll/releases/latest).
 
 ### Usage
-Include the main JS file in your HTML. For example:
+The pre-built files can be found in the `dist/` directory. `dist/angular-snapscroll.min.js` is minified and production-ready. Example usage:
 ```html
-<!-- if you installed it with bower: -->
-<script src="/bower_components/angular-snapscroll/dist/angular-snapscroll.min.js"></script>
-<!-- or if you downloaded a release archive: -->
-<script src="/dist/angular-snapscroll.min.js"></script>
+<script src="dist/angular-snapscroll.min.js"></script>
 ```
 Add `snapscroll` to your app's module dependencies:
 ```javascript
@@ -67,7 +68,7 @@ Contributions are welcomed! Here are the [contribution guidelines](CONTRIBUTING.
 
 This project uses [Grunt](http://gruntjs.com) for automation. Once you've forked the repo and cloned it to your machine, run this to install all the dependencies:
 ```sh
-npm install && bower install
+npm install
 ```
 Then to continuously watch files and run tests as you write code, run:
 ```sh
