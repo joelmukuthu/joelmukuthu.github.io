@@ -144,7 +144,7 @@
             <a href="https://github.com/joelmukuthu/angular-snapscroll">Fork me on GitHub</a>
         </div>
     </div>
-    <div class="main" snapscroll fit-window-height snap-index="snapIndex" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div class="main" snapscroll fit-window-height snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
       <div>
         <h1>angular-snapscroll</h1>
         <p>angular-snapscroll adds vertical scroll-and-snap functionality to angular.</p>
@@ -159,7 +159,7 @@
           <li>keyboard navigation (try pressing the up and down arrow keys)</li>
           <li>resetting current snap position after a manual scroll (try to scroll by dragging the scrollbar)</li>
           <li>snapIndex binding (the pagination showing on the right)</li>
-          <li>persisting snapIndex on page reload (using window.location.hash)</li>
+          <li>binding snapIndex to window.location.hash</li>
           <li>touch support (using <a class="noPreventDefault" href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
           <li><a class="noPreventDefault" href="#" ng-click="snapIndex=1">nested snapscrolls</a></li>
           <li><a class="noPreventDefault" href="#" ng-click="snapIndex=2">before and after callbacks</a></li>
@@ -270,13 +270,27 @@
       }]);
 
       app.controller('MainController', ['$scope', '$window', function ($scope, $window) {
-        var index = parseInt($window.location.hash.slice(1), 10);
-        $scope.snapAnimation = false; // turn animation off for the initial snap on page load
-        if (index && angular.isNumber(index)) {
+        var currentHash;
+        function updateSnapIndexFromHash() {
+          if (currentHash === $window.location.hash) {
+            return;
+          }
+          currentHash = $window.location.hash;
+          var index = parseInt(currentHash.slice(1), 10);
+          if (!index || !angular.isNumber(index)) {
+            index = 0;
+          }
           $scope.snapIndex = index;
-        } else {
-          $scope.snapIndex = 0;
         }
+        $scope.beforeSnap = function (snapIndex) {
+          $window.location.hash = currentHash = snapIndex;
+        }
+        $scope.afterSnap = function (snapIndex) {
+          $scope.snapAnimation = true; // // turn animation on after the initial snap
+        };
+        $scope.snapAnimation = false; // turn animation off for the initial snap on page load
+        setInterval(updateSnapIndexFromHash, 250);
+        updateSnapIndexFromHash();
         $scope.$on('arrow-up', function () {
           $scope.$apply(function () {
             $scope.snapIndex--;
@@ -292,10 +306,6 @@
         };
         $scope.swipeDown = function () {
           $scope.snapIndex--;
-        };
-        $scope.afterSnap = function (snapIndex) {
-          $scope.snapAnimation = true; // turn animations on after the initial snap
-          $window.location.hash = snapIndex;
         };
       }]);
 
