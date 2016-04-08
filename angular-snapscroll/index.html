@@ -166,9 +166,9 @@
           <li>snapIndex binding (the pagination showing on the right)</li>
           <li>binding snapIndex to window.location.hash</li>
           <li>touch support (using <a class="noPreventDefault" href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
-          <li><a class="noPreventDefault" href="#" ng-click="snapIndex=1">nested snapscrolls</a></li>
-          <li><a class="noPreventDefault" href="#" ng-click="snapIndex=2">before and after callbacks</a></li>
-          <li><a class="noPreventDefault" href="#" ng-click="snapIndex=3">dynamically added child elements (using ng-repeat)</a></li>
+          <li><a class="noPreventDefault" href="#1" ng-click="snapIndex=1">nested snapscrolls</a></li>
+          <li><a class="noPreventDefault" href="#2" ng-click="snapIndex=2">before and after callbacks</a></li>
+          <li><a class="noPreventDefault" href="#3" ng-click="snapIndex=3">dynamically added child elements (using ng-repeat)</a></li>
         </ul>
       </div>
       <div>
@@ -240,7 +240,7 @@
     </div>
     <ul class="indicators">
       <li ng-repeat="n in [0,1,2,3,4]">
-        <a href="#" ng-click="$parent.snapIndex=n"><span ng-class="{active: snapIndex == n}"></span></a>
+        <a href="#{{n}}" ng-click="$parent.snapIndex=n"><span ng-class="{active: snapIndex == n}"></span></a>
       </li>
     </ul>
     <script src="./bower_components/angular/angular.min.js"></script>
@@ -275,25 +275,21 @@
       }]);
 
       app.controller('MainController', ['$scope', '$window', function ($scope, $window) {
-        var currentHash;
+        var currentIndex;
         function updateSnapIndexFromHash() {
-          if (currentHash === $window.location.hash) {
+          var index = parseInt($window.location.hash.slice(1), 10);
+          if (isNaN(index) || !angular.isNumber(index)) {
             return;
-          }
-          currentHash = $window.location.hash;
-          var index = parseInt(currentHash.slice(1), 10);
-          if (!index || !angular.isNumber(index)) {
-            index = 0;
           }
           $scope.snapIndex = index;
         }
         $scope.beforeSnap = function (snapIndex) {
-          $window.location.hash = currentHash = snapIndex;
+          $window.location.hash = currentIndex = snapIndex;
         }
+        $scope.snapAnimation = false; // turn animation off for the initial snap on page load
         $scope.afterSnap = function (snapIndex) {
           $scope.snapAnimation = true; // // turn animation on after the initial snap
         };
-        $scope.snapAnimation = false; // turn animation off for the initial snap on page load
         setInterval(updateSnapIndexFromHash, 250);
         updateSnapIndexFromHash();
         $scope.$on('arrow-up', function () {
