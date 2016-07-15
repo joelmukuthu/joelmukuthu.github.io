@@ -1,0 +1,28 @@
+{
+  "name": "angular-wheelie",
+  "version": "1.1.0",
+  "description": "Mousewheel as an angular service",
+  "main": "dist/angular-wheelie.js",
+  "authors": [
+    "Joel Mukuthu <joelmukuthu@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "wheel",
+    "mousewheel"
+  ],
+  "dependencies": {
+    "angular": "^1.2.24"
+  },
+  "homepage": "https://github.com/joelmukuthu/angular-wheelie.git",
+  "ignore": [
+    "**/.*",
+    "src",
+    "node_modules",
+    "bower_components",
+    "Gruntfile.js",
+    "CONTRIBUTING.md",
+    "test"
+  ]
+}
