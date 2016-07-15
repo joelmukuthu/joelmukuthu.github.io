@@ -164,11 +164,10 @@
           <li>keyboard navigation (try pressing the up and down arrow keys)</li>
           <li>resetting current snap position after a manual scroll (try to scroll by dragging the scrollbar)</li>
           <li>snapIndex binding (the pagination showing on the right)</li>
-          <li>binding snapIndex to window.location.hash</li>
+          <li>binding snapIndex to window.location.hash (view source for this demo)</li>
           <li>touch support (using <a class="noPreventDefault" href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
           <li><a class="noPreventDefault" href="#1" ng-click="snapIndex=1">nested snapscrolls</a></li>
           <li><a class="noPreventDefault" href="#2" ng-click="snapIndex=2">before and after callbacks</a></li>
-          <li><a class="noPreventDefault" href="#3" ng-click="snapIndex=3">dynamically added child elements (using ng-repeat)</a></li>
         </ul>
       </div>
       <div>
@@ -227,15 +226,7 @@
           </div>
         </div>
       </div>
-      <div>
-        <h3>Dynamically added child elements</h3>
-        <p>Snapscroll doesn't set the initial height of dynamically added child elements. Using ngRepeat however, you can set
-          the child elments' height at creation time by taking advantage of the snapHeight binding, after which snapscroll will
-          take over and update their heights whenever snapHeight changes. Example below:</p>
-        <div class="nested" snapscroll="" snap-height="snapHeight">
-          <div ng-repeat="n in [1, 2, 3, 4, 5]" style="height:{{$parent.snapHeight}}px"><span>{{n}}</span></div>
-        </div>
-      </div>
+      <div></div>
       <div></div>
     </div>
     <ul class="indicators">
