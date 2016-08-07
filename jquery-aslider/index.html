@@ -280,11 +280,14 @@
             ];
 
         function initSlider() {
+          // Initialize the slider
           var slider = frame.aslider({
-            keyboardArrowKeys: true,
-            pageContainer: screen,
-            cssTransitions: true,
-            beforeSlide: function (index) {
+            keyboardArrowKeys: true, // enable keyboard navigation
+            pageContainer: screen, // configure slider container
+            cssTransitions: true, // enable css transitions
+            beforeSlide: function (index) { // animate the active-page indicator at the same time as the sliding
+              // find which row and column we're sliding to and calculate the
+              // indicator's new left and top offset
               var coordinates = this._getCoordinates(index),
                   width = activePageIndicator.width(),
                   height = activePageIndicator.height(),
@@ -295,20 +298,22 @@
                 transform: 'translate(' + left + 'px, ' + top + 'px)'
               });
             }
-          }).data('aslider');
+          }).data('aslider'); // grab the slider api
 
+          // Translate clicks on the pagination to slider actions
           var indicatorSpans = $('span:not(.active)', indicators);
           indicators.on('click', 'span:not(.active)', function () {
             var index = indicatorSpans.index(this);
             slider.seek(index);
           });
 
+          // Add touch support using Hammer.js
           var hammertime = new Hammer(frame.get(0));
-
+          // Allow vertical and horizontal swiping
           hammertime.get('swipe').set({
             direction: Hammer.DIRECTION_ALL
           });
-
+          // Translate Hammer.js event to slider actions
           hammertime.on('swipeup', slider.down.bind(slider));
           hammertime.on('swipedown', slider.up.bind(slider));
           hammertime.on('swipeleft', slider.right.bind(slider));
@@ -318,15 +323,19 @@
         function imageLoaded() {
           imagesLoaded++;
           if (imagesLoaded === totalImages) {
+            // after all images are loaded from placeimg.com, fade out the loader
+            // and Initialize the slider. also, show the navigation
             loader.fadeOut();
             initSlider();
             indicators.fadeIn();
           }
         }
 
+        // load random images from placeimg.com and append them as slides. also,
+        // create new navigation links for the in the top-right navigation.
         for (var i = 0; i < totalImages; i++) {
           indicators.append('<span>');
-          var cont = $('<div>', {
+          var slide = $('<div>', {
             class: 'img'
           });
           var img = $('<img>', {
@@ -336,9 +345,10 @@
           var shadow = $('<div>', {
             class: 'shadow'
           });
-          screen.append(cont.append(img, shadow));
+          screen.append(slide.append(img, shadow));
         }
 
+        // append the active-page indicator to the navigation
         indicators.append(activePageIndicator);
       });
 
