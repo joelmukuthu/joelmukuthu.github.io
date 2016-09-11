@@ -91,6 +91,16 @@
         background: rgb(5, 159, 179);
         border: 10px rgb(10, 84, 92) solid;
       }
+      .main > .fit-window-height {
+        padding: 0;
+      }
+      .fit-window-height .nested div {
+        padding: 1em;
+        font-size: 5em;
+        text-align: left;
+        font-weight: bold;
+        line-height: initial;
+      }
       .clearfix {
         overflow: hidden;
         height: auto;
@@ -188,6 +198,7 @@
           <li><a class="noPreventDefault" href="#1" ng-click="snapIndex=1">nested snapscrolls</a></li>
           <li><a class="noPreventDefault" href="#2" ng-click="snapIndex=2">before and after callbacks</a></li>
           <li><a class="noPreventDefault" href="#3" ng-click="snapIndex=3">bigger-height children</a></li>
+          <li><a class="noPreventDefault" href="#4" ng-click="snapIndex=4">fit-window-height</a></li>
         </ul>
       </div>
       <div>
@@ -251,7 +262,14 @@
           This &lt;div&gt; is inside a child element whose height is greater than the snapscroll element
         </div>
       </div>
-      <div></div>
+      <div class="fit-window-height">
+        <div class="nested" snapscroll fit-window-height>
+            <div>
+              Nested snapscroll that fills the browser viewport using
+              <a class="noPreventDefault" href="https://github.com/joelmukuthu/angular-snapscroll/blob/master/DOCS.md#fit-window-height">fit-window-height</a>
+            </div>
+        </div>
+      </div>
     </div>
     <ul class="indicators">
       <li ng-repeat="n in [0,1,2,3,4]">
