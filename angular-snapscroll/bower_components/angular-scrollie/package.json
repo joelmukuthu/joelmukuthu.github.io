@@ -1,0 +1,57 @@
+{
+  "name": "angular-scrollie",
+  "version": "1.0.0",
+  "description": "Programmatic scrolling as an angular service",
+  "main": "dist/angular-scrollie.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "karma start test/karma.conf.js",
+    "build": "npm run lint && npm test && grunt build",
+    "prepublish": "npm run lint && npm test"
+  },
+  "keywords": [
+    "angular",
+    "scroll",
+    "scrolltop"
+  ],
+  "author": "Joel Mukuthu <joelmukuthu@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "angular-mocks": "^1.2.24",
+    "eslint": "^3.2.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-release-it": "^1.0.1",
+    "karma": "^1.1.1",
+    "karma-coverage": "^1.0.0",
+    "karma-coveralls": "^1.1.2",
+    "karma-mocha": "^1.0.1",
+    "karma-mocha-reporter": "^2.0.5",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0",
+    "mocha": "^3.0.0",
+    "phantomjs-prebuilt": "^2.1.8",
+    "sinon": "^1.17.5",
+    "unexpected": "^10.13.3",
+    "unexpected-sinon": "^10.2.1"
+  },
+  "dependencies": {
+    "angular": "^1.2.24"
+  },
+  "peerDependencies": {
+    "angular": "^1.2.24"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelmukuthu/angular-scrollie.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joelmukuthu/angular-scrollie/issues"
+  },
+  "homepage": "https://github.com/joelmukuthu/angular-scrollie#readme"
+}

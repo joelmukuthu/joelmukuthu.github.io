@@ -1,0 +1,28 @@
+{
+  "name": "angular-scrollie",
+  "version": "1.0.0",
+  "description": "Programmatic scrolling as an angular service",
+  "main": "dist/angular-scrollie.js",
+  "authors": [
+    "Joel Mukuthu <joelmukuthu@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "scroll",
+    "scrolltop"
+  ],
+  "dependencies": {
+    "angular": "^1.2.24"
+  },
+  "homepage": "https://github.com/joelmukuthu/angular-scrollie.git",
+  "ignore": [
+    "**/.*",
+    "src",
+    "node_modules",
+    "bower_components",
+    "Gruntfile.js",
+    "CONTRIBUTING.md",
+    "test"
+  ]
+}
