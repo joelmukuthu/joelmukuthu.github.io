@@ -85,7 +85,7 @@
       .larger > div {
         padding: 1em;
         height: 100%;
-        font-size: 5em;
+        font-size: 3em;
         font-weight: bold;
         box-sizing: border-box;
         background: rgb(5, 159, 179);
@@ -94,9 +94,12 @@
       .main > .fit-window-height {
         padding: 0;
       }
+      .fit-window-height .nested {
+        background: transparent;
+      }
       .fit-window-height .nested div {
         padding: 1em;
-        font-size: 5em;
+        font-size: 3em;
         text-align: left;
         font-weight: bold;
         line-height: initial;
@@ -265,7 +268,7 @@
       <div class="fit-window-height">
         <div class="nested" snapscroll fit-window-height>
             <div>
-              Nested snapscroll that fills the browser viewport using
+              Nested snapscroll with only one child element that fills the browser viewport height using
               <a class="noPreventDefault" href="https://github.com/joelmukuthu/angular-snapscroll/blob/master/DOCS.md#fit-window-height">fit-window-height</a>
             </div>
         </div>
