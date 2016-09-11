@@ -39,6 +39,9 @@
       a:hover {
         text-decoration: underline;
       }
+      .main {
+        height: 100vh;
+      }
       .main > div {
         height: 100vh;
         padding-right: 60px;
@@ -71,6 +74,22 @@
         display: inline-block;
         vertical-align: middle;
         border: 10px #fff solid;
+      }
+      .main > .larger {
+        height: 200vh;
+        padding-top: 3em;
+        padding-left: 3em;
+        padding-bottom: 3em;
+        box-sizing: border-box;
+      }
+      .larger > div {
+        padding: 1em;
+        height: 100%;
+        font-size: 5em;
+        font-weight: bold;
+        box-sizing: border-box;
+        background: rgb(5, 159, 179);
+        border: 10px rgb(10, 84, 92) solid;
       }
       .clearfix {
         overflow: hidden;
@@ -149,7 +168,7 @@
             <a href="https://github.com/joelmukuthu/angular-snapscroll">Fork me on GitHub</a>
         </div>
     </div>
-    <div class="main" snapscroll fit-window-height snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div class="main" snapscroll snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
       <div>
         <h1>angular-snapscroll</h1>
         <p>angular-snapscroll adds vertical scroll-and-snap functionality to angular.</p>
@@ -168,6 +187,7 @@
           <li>touch support (using <a class="noPreventDefault" href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
           <li><a class="noPreventDefault" href="#1" ng-click="snapIndex=1">nested snapscrolls</a></li>
           <li><a class="noPreventDefault" href="#2" ng-click="snapIndex=2">before and after callbacks</a></li>
+          <li><a class="noPreventDefault" href="#3" ng-click="snapIndex=3">bigger-height children</a></li>
         </ul>
       </div>
       <div>
@@ -226,7 +246,11 @@
           </div>
         </div>
       </div>
-      <div></div>
+      <div class="larger">
+        <div>
+          This &lt;div&gt; is inside a child element whose height is greater than the snapscroll element
+        </div>
+      </div>
       <div></div>
     </div>
     <ul class="indicators">
