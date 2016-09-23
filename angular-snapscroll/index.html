@@ -175,13 +175,13 @@
       }
     </style>
    </head>
-  <body ng-app="app" ng-controller="MainController" keyboard-keys>
+  <body ng-app="app" ng-controller="MainController">
     <div class="github-fork-ribbon-wrapper right">
         <div class="github-fork-ribbon">
             <a href="https://github.com/joelmukuthu/angular-snapscroll">Fork me on GitHub</a>
         </div>
     </div>
-    <div class="main" snapscroll snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div class="main" snapscroll enable-arrow-keys snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
       <div>
         <h1>angular-snapscroll</h1>
         <p>angular-snapscroll adds vertical scroll-and-snap functionality to angular.</p>
@@ -193,7 +193,7 @@
         <p>This is a suite of snapscroll examples that demonstrantes:</p>
         <ul>
           <li>full-page snapscroll (fit-window-height attribute)</li>
-          <li>keyboard navigation (try pressing the up and down arrow keys)</li>
+          <li>keyboard navigation (using enable-arrow-keys attribute)</li>
           <li>resetting current snap position after a manual scroll (try to scroll by dragging the scrollbar)</li>
           <li>snapIndex binding (the pagination showing on the right)</li>
           <li>binding snapIndex to window.location.hash (view source for this demo)</li>
@@ -290,28 +290,6 @@
         'snapscroll'
       ]);
 
-      app.directive('keyboardKeys', ['$document', function ($document) {
-        return {
-          restrict: 'A',
-          link: function (scope) {
-            var keydown = function (e) {
-              if (e.keyCode === 38) {
-                e.preventDefault();
-                scope.$emit('arrow-up');
-              }
-              if (e.keyCode === 40) {
-                e.preventDefault();
-                scope.$emit('arrow-down');
-              }
-            };
-            $document.on('keydown', keydown);
-            scope.$on('$destroy', function () {
-              $document.off('keydown', keydown);
-            });
-          }
-        }
-      }]);
-
       app.controller('MainController', ['$scope', '$window', function ($scope, $window) {
         var currentIndex;
         function updateSnapIndexFromHash() {
@@ -330,16 +308,6 @@
         };
         setInterval(updateSnapIndexFromHash, 250);
         updateSnapIndexFromHash();
-        $scope.$on('arrow-up', function () {
-          $scope.$apply(function () {
-            $scope.snapIndex--;
-          });
-        });
-        $scope.$on('arrow-down', function () {
-          $scope.$apply(function () {
-            $scope.snapIndex++;
-          });
-        });
         $scope.swipeUp = function () {
           $scope.snapIndex++;
         };

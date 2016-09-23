@@ -1,6 +1,6 @@
 {
   "name": "angular-snapscroll",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "authors": [
     "Joel Mukuthu <joelmukuthu@gmail.com>"
   ],
@@ -25,17 +25,18 @@
     "test"
   ],
   "dependencies": {
-    "angular": "^1.2.24"
+    "angular": "^1.2.24",
+    "angular-scrollie": "^1.0.0"
   },
   "homepage": "https://github.com/joelmukuthu/angular-snapscroll.git",
-  "_release": "0.3.0",
+  "_release": "1.0.0",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.0",
-    "commit": "acdedd629a01ceeeab0fdf734aaafd963b95fa47"
+    "tag": "v1.0.0",
+    "commit": "fdadc4c15f035ef25746cb3f42d707bd534978e9"
   },
   "_source": "https://github.com/joelmukuthu/angular-snapscroll.git",
-  "_target": "^0.3.0",
+  "_target": "^1.0.0",
   "_originalSource": "angular-snapscroll",
   "_direct": true
 }
