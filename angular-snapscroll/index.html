@@ -197,7 +197,7 @@
           <li>resetting current snap position after a manual scroll (try to scroll by dragging the scrollbar)</li>
           <li>snapIndex binding (the pagination showing on the right)</li>
           <li>binding snapIndex to window.location.hash (view source for this demo)</li>
-          <li>touch support (using <a class="noPreventDefault" href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
+          <li>touch support on touch devices (using <a class="noPreventDefault" href="https://github.com/marmorkuchen-net/angular-swipe">angular-swipe</a> module)</li>
           <li><a class="noPreventDefault" href="#1" ng-click="snapIndex=1">nested snapscrolls</a></li>
           <li><a class="noPreventDefault" href="#2" ng-click="snapIndex=2">before and after callbacks</a></li>
           <li><a class="noPreventDefault" href="#3" ng-click="snapIndex=3">bigger-height children</a></li>
@@ -290,6 +290,9 @@
         'snapscroll'
       ]);
 
+      var hasTouchSupport = ('ontouchstart' in window) ||
+          window.DocumentTouch && document instanceof DocumentTouch;
+
       app.controller('MainController', ['$scope', '$window', function ($scope, $window) {
         var currentIndex;
         function updateSnapIndexFromHash() {
@@ -309,10 +312,10 @@
         setInterval(updateSnapIndexFromHash, 250);
         updateSnapIndexFromHash();
         $scope.swipeUp = function () {
-          $scope.snapIndex++;
+          hasTouchSupport && $scope.snapIndex++;
         };
         $scope.swipeDown = function () {
-          $scope.snapIndex--;
+          hasTouchSupport && $scope.snapIndex--;
         };
       }]);
 
@@ -337,14 +340,14 @@
             maxNestedSnapIndex = 4;
         $scope.nestedSnapIndex = 0;
         $scope.swipeUp = function ($event) {
-          if ($scope.nestedSnapIndex + 1 <= maxNestedSnapIndex) {
+          if (hasTouchSupport && $scope.nestedSnapIndex + 1 <= maxNestedSnapIndex) {
             $scope.nestedSnapIndex++;
             $event.stopPropagation();
           }
           // else, allow bubbling up since this instance is already scrolled to the end
         };
         $scope.swipeDown = function ($event) {
-          if ($scope.nestedSnapIndex - 1 >= minNestedSnapIndex) {
+          if (hasTouchSupport && $scope.nestedSnapIndex - 1 >= minNestedSnapIndex) {
             $scope.nestedSnapIndex--;
             $event.stopPropagation();
           }
