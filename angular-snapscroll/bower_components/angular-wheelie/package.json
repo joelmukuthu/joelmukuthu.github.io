@@ -1,6 +1,6 @@
 {
   "name": "angular-wheelie",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Mousewheel as an angular service",
   "main": "dist/angular-wheelie.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "license": "MIT",
   "devDependencies": {
     "angular-mocks": "^1.2.24",
-    "eslint": "^3.1.0",
+    "eslint": "^3.2.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
@@ -28,12 +28,12 @@
     "karma-coverage": "^1.0.0",
     "karma-coveralls": "^1.1.2",
     "karma-mocha": "^1.0.1",
-    "karma-mocha-reporter": "^2.0.3",
+    "karma-mocha-reporter": "^2.0.5",
     "karma-phantomjs-launcher": "^1.0.0",
     "load-grunt-tasks": "^3.5.0",
-    "mocha": "^2.5.3",
-    "phantomjs-prebuilt": "^2.1.7",
-    "sinon": "^1.17.4",
+    "mocha": "^3.0.0",
+    "phantomjs-prebuilt": "^2.1.8",
+    "sinon": "^1.17.5",
     "unexpected": "^10.13.3",
     "unexpected-sinon": "^10.2.1"
   },
