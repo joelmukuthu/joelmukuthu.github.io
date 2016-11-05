@@ -181,7 +181,7 @@
             <a href="https://github.com/joelmukuthu/angular-snapscroll">Fork me on GitHub</a>
         </div>
     </div>
-    <div class="main" snapscroll enable-arrow-keys snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div class="main" snapscroll enable-arrow-keys prevent-left-right-scroll snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
       <div>
         <h1>angular-snapscroll</h1>
         <p>angular-snapscroll adds vertical scroll-and-snap functionality to angular.</p>
@@ -353,6 +353,22 @@
           }
           // else, allow bubbling up since this instance is already scrolled to the end
         };
+      }]);
+
+      app.directive('preventLeftRightScroll', ['wheelie', function (wheelie) {
+        return {
+          restrict: 'A',
+          link: function (scope, element) {
+            wheelie.bind(element, {
+              left: function (e) {
+                e.preventDefault();
+              },
+              right: function (e) {
+                e.preventDefault();
+              }
+            });
+          }
+        }
       }]);
 
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
