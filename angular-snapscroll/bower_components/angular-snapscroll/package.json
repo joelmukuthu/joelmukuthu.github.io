@@ -1,6 +1,6 @@
 {
   "name": "angular-snapscroll",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Vertical scroll-and-snap functionality in angular",
   "main": "dist/angular-snapscroll.js",
   "directories": {
@@ -16,7 +16,7 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^19.0.0",
     "grunt-karma": "^2.0.0",
@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "angular": "^1.2.24",
-    "angular-wheelie": "^1.1.0",
-    "angular-scrollie": "^1.0.0"
+    "angular-scrollie": "^1.0.0",
+    "angular-wheelie": "^2.0.0"
   },
   "repository": {
     "type": "git",

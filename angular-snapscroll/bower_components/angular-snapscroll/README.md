@@ -12,7 +12,7 @@ angular-snapscroll adds vertical scroll-and-snap functionality to angular.
 ### Installation
 Install with bower:
 ```sh
-bower install angular-snapscroll angular-wheelie angular-scrollie
+bower install angular-snapscroll
 ```
 Or with npm:
 ```sh
@@ -80,17 +80,10 @@ for an example (the demo uses angular-swipe).
 Have a look at the [docs](DOCS.md) for all the configuration options. For more
 examples, view the source on the [demo site](http://joelmukuthu.github.io/angular-snapscroll/).
 
-### Known issue and workaround
-Swiping on a trackpad with high sensitivity (i.e. on a Mac) may cause a snapscroll
-instance to snap twice in the same direction. The workaround for this is to set
-`defaultSnapscrollSnapDuration` or `snap-duration` to a higher value (try 1000ms
-or 1200ms).
-
 ### Todo's
 - snapscroll as an element - would allow use of templates and ngAnimate for
 animations. Currently this repo has a (rather outdated) 'as-element' branch for
 this.
-- more browser tests
 
 ### Contributing
 Contributions are welcomed! Here are the [contribution guidelines](CONTRIBUTING.md).
