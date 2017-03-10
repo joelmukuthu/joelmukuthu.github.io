@@ -181,7 +181,17 @@
             <a href="https://github.com/joelmukuthu/angular-snapscroll">Fork me on GitHub</a>
         </div>
     </div>
-    <div class="main" snapscroll enable-arrow-keys prevent-left-right-scroll snap-index="snapIndex" before-snap="beforeSnap(snapIndex)" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div class="main"
+      snapscroll
+      enable-arrow-keys
+      prevent-left-right-scroll
+      snap-index="snapIndex"
+      before-snap="beforeSnap(snapIndex)"
+      after-snap="afterSnap(snapIndex)"
+      snap-animation="snapAnimation"
+      ng-swipe-up="swipeUp()"
+      ng-swipe-down="swipeDown()"
+      ignore-wheel-class="messages">
       <div>
         <h1>angular-snapscroll</h1>
         <p>angular-snapscroll adds vertical scroll-and-snap functionality to angular.</p>
@@ -246,16 +256,16 @@
             <div><span>5</span></div>
         </div>
         <div class="clearfix">
-          <div>
-            <p>before-snap messages:</p>
-            <ul>
-              <li ng-repeat="message in beforeSnapMessages track by $index">{{ message }}</li>
+          <div class="messages">
+            <p class="messages">before-snap messages:</p>
+            <ul class="messages">
+              <li class="messages" ng-repeat="message in beforeSnapMessages track by $index">{{ message }}</li>
             </ul>
           </div>
-          <div>
-            <p>after-snap messages:</p>
-            <ul>
-              <li ng-repeat="message in afterSnapMessages track by $index">{{ message }}</li>
+          <div class="messages">
+            <p class="messages">after-snap messages:</p>
+            <ul class="messages">
+              <li class="messages" ng-repeat="message in afterSnapMessages track by $index">{{ message }}</li>
             </ul>
           </div>
         </div>
