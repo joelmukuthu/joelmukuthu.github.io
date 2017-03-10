@@ -1,3 +1,22 @@
+## 1.3.0
+
+### Features
+- Add module exports (https://github.com/joelmukuthu/angular-snapscroll/issues/46)
+
+## 1.2.0
+
+### Features
+- Support passing events to [`before-snap`](DOCS.md#before-snap) and
+[`after-snap`](DOCS.md#after-snap) callbacks
+- Support disabling wheel and trackpad events with
+[`disable-wheel-binding`](DOCS.md#disable-wheel-binding)
+
+## 1.1.0
+
+### Features
+- Support ignoring wheel events from specified elements with
+[`ignore-wheel-class`](DOCS.md#ignore-wheel-class)
+
 ## 1.0.2
 
 ### Fixes
@@ -46,3 +65,13 @@ or equal to the snapscroll element
 - If `overflow-y` on the snapscroll element is set to `scroll`, then it is not
 changed to `auto`
 - Change angular dep version to the lowest supported version (`1.2.24`)
+
+## 0.2.5
+
+### Features
+- Support for installation with npm
+
+## 0.2.4
+
+### Fixes
+- Fix wheel event when jQuery is also included on the page

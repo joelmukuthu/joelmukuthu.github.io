@@ -1,6 +1,6 @@
 {
   "name": "angular-scrollie",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Programmatic scrolling as an angular service",
   "main": "dist/angular-scrollie.js",
   "authors": [
@@ -25,14 +25,13 @@
     "CONTRIBUTING.md",
     "test"
   ],
-  "_release": "1.0.0",
+  "_release": "1.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.0",
-    "commit": "2102cefffa3be29dbca0eb55de425dc45c4f7bdb"
+    "tag": "v1.1.1",
+    "commit": "3dc1e5bf019e5ed287d25c229490ad76b4a0313d"
   },
   "_source": "https://github.com/joelmukuthu/angular-scrollie.git",
-  "_target": "^1.0.0",
-  "_originalSource": "angular-scrollie",
-  "_direct": true
+  "_target": "^1.1.1",
+  "_originalSource": "angular-scrollie"
 }

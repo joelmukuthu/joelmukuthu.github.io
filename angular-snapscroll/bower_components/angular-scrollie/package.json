@@ -1,6 +1,6 @@
 {
   "name": "angular-scrollie",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Programmatic scrolling as an angular service",
   "main": "dist/angular-scrollie.js",
   "scripts": {

@@ -1,10 +1,14 @@
 /**
  * angular-scrollie
- * Version: 1.0.0
- * (c) 2016 Joel Mukuthu
+ * Version: 1.1.1
+ * (c) 2016-2017 Joel Mukuthu
  * MIT License
- * Built on: 13-08-2016 17:04:08 GMT+0200
+ * Built on: 06-03-2017 12:11:30 GMT+0100
  **/
+
+if (typeof exports === 'object') {
+    module.exports = 'scrollie';
+}
 
 angular.module('scrollie', []);
 
@@ -33,8 +37,13 @@ angular.module('scrollie', []);
 
     angular
     .module('scrollie')
-    .factory('requestAnimation', ['$timeout', '$window',
-        function ($timeout, $window) {
+    .factory('requestAnimation', [
+        '$timeout',
+        '$window',
+        function (
+            $timeout,
+            $window
+        ) {
             var lastTime,
                 requestAnimation = $window.requestAnimationFrame ||
                     getWithVendorPrefix('RequestAnimationFrame', $window);
@@ -52,8 +61,13 @@ angular.module('scrollie', []);
             return requestAnimation;
         }
     ])
-    .factory('cancelAnimation', ['$timeout', '$window',
-        function ($timeout, $window) {
+    .factory('cancelAnimation', [
+        '$timeout',
+        '$window',
+        function (
+            $timeout,
+            $window
+        ) {
             var cancelAnimation = $window.cancelAnimationFrame ||
                 getWithVendorPrefix('CancelAnimationFrame', $window) ||
                 getWithVendorPrefix('CancelRequestAnimationFrame', $window);
@@ -68,10 +82,15 @@ angular.module('scrollie', []);
 })();
 
 // this is built upon http://stackoverflow.com/a/16136789/1004406
-angular
-.module('scrollie')
-.factory('scrollie', ['$q', 'requestAnimation', 'cancelAnimation',
-    function ($q, requestAnimation, cancelAnimation) {
+angular.module('scrollie').factory('scrollie', [
+    '$q',
+    'requestAnimation',
+    'cancelAnimation',
+    function (
+        $q,
+        requestAnimation,
+        cancelAnimation
+    ) {
         function easeInOutQuad(time, start, change, duration) {
             time /= duration / 2;
             if (time < 1) {

@@ -1,6 +1,30 @@
-# angular-snapscroll docs
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-## snapscroll directive
+- [angular-snapscroll](#angular-snapscroll)
+  - [snapscroll](#snapscroll)
+    - [snap-index](#snap-index)
+    - [snap-height](#snap-height)
+    - [fit-window-height](#fit-window-height)
+    - [enable-arrow-keys](#enable-arrow-keys)
+    - [disable-wheel-binding](#disable-wheel-binding)
+    - [ignore-wheel-class](#ignore-wheel-class)
+    - [before-snap](#before-snap)
+    - [after-snap](#after-snap)
+    - [snap-animation](#snap-animation)
+    - [snap-duration](#snap-duration)
+    - [snap-easing](#snap-easing)
+    - [prevent-snapping-after-manual-scroll](#prevent-snapping-after-manual-scroll)
+    - [scroll-delay](#scroll-delay)
+    - [resize-delay](#resize-delay)
+    - [prevent-double-snap-delay](#prevent-double-snap-delay)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# angular-snapscroll
+
+## snapscroll
 Adds scroll-and-snap behaviour to any element that has a vertical scrollbar:
 ```html
 <div style="height: 200px;" snapscroll="">
@@ -21,13 +45,13 @@ angular.controller('MainCtrl', function ($scope, $window) {
 <div style="height: 200px;" snapscroll="false"> ... </div>
 <!-- disabled programmatically -->
 <div ng-controller="MainCtrl">
-  <div snapscroll="" snapscroll="snapscrollEnabled"> ... </div>
+  <div snapscroll="snapscrollEnabled"> ... </div>
 </div>
 ```
 
 Other attributes that can be added are:
 
-##### snap-index
+### snap-index
 provides a two-way bind to the current index of the visible child element.
 indeces are zero-based.
 ```html
@@ -41,7 +65,7 @@ indeces are zero-based.
 </div>
 ```
 
-##### snap-height
+### snap-height
 allows you to provide the height of the element (and children elements) instead
 of doing it in CSS. this is a two-way bind.
 ```html
@@ -53,7 +77,7 @@ of doing it in CSS. this is a two-way bind.
 </div>
 ```
 
-#### fit-window-height
+### fit-window-height
 instead of `snap-height`, you can use this attribute (it's actually a directive)
 to make the snapHeight equal the window height. snapHeight will be updated
 automatically if the window is resized.
@@ -61,18 +85,55 @@ automatically if the window is resized.
 <div snapscroll="" fit-window-height=""> ... </div>
 ```
 
-#### enable-arrow-keys
+### enable-arrow-keys
 enable support for snapping up and down when the up and down keyboard keys are
 pressed, respectively.
 ```html
 <div snapscroll="" enable-arrow-keys=""> ... </div>
 ```
 
-#### before-snap
+### disable-wheel-binding
+by default, wheel (and trackpad) events will lead to the element being snapped
+up or down. you can disable this functionality using this attribute, which means
+that wheel events will lead to the element being scrolled normally instead of
+being snap-scrolled.
+```html
+<div snapscroll="" disable-wheel-binding=""> ... </div>
+```
+note that you will still be able to control snapping using the
+[`snap-index`](#snap-index) binding and using the keyboard arrow keys if
+[`enable-arrow-keys`](#enable-arrow-keys) is set.
+
+also note that when the element is scrolled normally, snapscroll will try to
+reset the `scrollTop` so that the current snap is fully visible. So to ensure
+wheel events have completely no side-effects, also set the
+[`prevent-snapping-after-manual-scroll`](#prevent-snapping-after-manual-scroll)
+attribute.
+
+### ignore-wheel-class
+snapscroll takes over the wheel events for the element it's bound to and
+translates them to snapping up/down. to allow the normal scrolling on a nested
+element (i.e. prevent snapping when the wheel event comes from that element),
+add a class to the element and provide that class-name as the value for the
+`ignore-wheel-class` attribute.
+```html
+<div snapscroll="" enable-arrow-keys="" ignore-wheel-class="ignore-me">
+    <div>
+        <div class="ignore-me">normal scrolling here</div>
+    </div>
+</div>
+```
+note that if you wish to ignore wheel events from an element with children, then
+the class-name must also be added to the child elements. that's because in this
+case wheel events will bubble from the child elements.
+
+### before-snap
 is a callback executed before snapping occurs. the callback is passed a
-`snapIndex` parameter, which is the index being snapped to. returning `false`
-from this callback will prevent snapping. you can also override the next
-`snapIndex` by returning a number.
+`snapIndex` parameter, which is the index being snapped to, and an `$event`
+parameter, which is the event triggering the snapping, if available (e.g.
+WheelEvent if it was the mousewheel or KeyboardEvent if it was an arrow key).
+returning `false` from this callback will prevent snapping. you can also override
+the next `snapIndex` by returning a number.
 ```javascript
 angular.controller('MainCtrl', function ($scope) {
     $scope.beforeSnap = function (snapIndex) {
@@ -92,9 +153,11 @@ angular.controller('MainCtrl', function ($scope) {
 </div>
 ```
 
-#### after-snap
+### after-snap
 is a callback executed after snapping occurs. the callback is passed a
-`snapIndex` parameter, which is the index just snapped to. any return value from
+`snapIndex` parameter, which is the index just snapped to, and an `$event`
+parameter, which is the event triggering the snapping if available ( e.g.
+WheelEvent if it was the mousewheel or KeyboardEvent if it was an arrow key). any return value from
 this callback is ignored.
 ```javascript
 angular.controller('MainCtrl', function ($scope) {
@@ -109,7 +172,7 @@ angular.controller('MainCtrl', function ($scope) {
 </div>
 ```
 
-#### snap-animation
+### snap-animation
 allows turning the snap animation on/off. this is a two-way bind.
 ```javascript
 angular.controller('MainCtrl', function ($scope) {
@@ -132,7 +195,7 @@ angular.controller('MainCtrl', function ($scope) {
 </div>
 ```
 
-#### snap-duration
+### snap-duration
 integer value indicating the length of the snap animation in milliseconds. a
 value of 0 disables the snap-animation as well. default is 800ms.
 ```html
@@ -145,7 +208,7 @@ angular.module('myapp', ['snapscroll'])
     .value('defaultSnapscrollSnapDuration', 1200);
 ```
 
-#### snap-easing
+### snap-easing
 function reference that allows overriding the default easing of the snap
 animation. note that this is not a regular angular callback but rather a
 function reference. the default easing is easeInOutQuad. any of the javascript
@@ -171,12 +234,12 @@ angular.module('myapp', ['snapscroll'])
     });
 ```
 
-#### prevent-snapping-after-manual-scroll
+### prevent-snapping-after-manual-scroll
 snapscroll listens to the `scroll` event on the element that it's bound to and
 automatically resets the current snap after a manual scroll so that it's always
 fully visible. this behaviour can be prevented by adding this attribute.
 
-#### scroll-delay
+### scroll-delay
 the `scroll` listener described above is throttled using a `scroll-delay`. this
 delay can be changed by providing a value in milliseconds. it can also be turned
 off by providing `false`.
@@ -190,7 +253,7 @@ angular.module('myapp', ['snapscroll'])
     .value('defaultSnapscrollScrollDelay', 400);
 ```
 
-#### resize-delay
+### resize-delay
 the `resize` listener used by `fit-window-height` is throttled using a
 `resize-delay`. this delay can be changed by providing a value in milliseconds.
 it can also be turned off by providing `false`.
@@ -204,7 +267,7 @@ angular.module('myapp', ['snapscroll'])
     .value('defaultSnapscrollResizeDelay', 400);
 ```
 
-#### prevent-double-snap-delay
+### prevent-double-snap-delay
 In order to prevent snapping twice in the same direction on trackpads with high
 sensitivity, there is a 1 second delay that disables snapping to the same
 direction. This can be altered using this attribute or disabled altogether by

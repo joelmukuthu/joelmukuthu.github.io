@@ -1,21 +1,23 @@
 /**
  * angular-wheelie
- * Version: 2.0.0
- * (c) 2016 Joel Mukuthu
+ * Version: 3.0.1
+ * (c) 2016-2017 Joel Mukuthu
  * MIT License
- * Built on: 05-11-2016 17:55:10 GMT+0100
+ * Built on: 06-03-2017 12:12:32 GMT+0100
  **/
+
+if (typeof exports === 'object') {
+    module.exports = 'wheelie';
+}
 
 angular.module('wheelie', []);
 
-angular
-.module('wheelie')
-.factory('wheelie', [function () {
+angular.module('wheelie').factory('wheelie', [function () {
     var isDefined = angular.isDefined;
     var isFunction = angular.isFunction;
 
     return {
-        bind: function (element, callbacks) {
+        bind: function (element, callbacks, ignoreClassName) {
             callbacks = callbacks || {};
 
             if (isDefined(callbacks.up) && !isFunction(callbacks.up)) {
@@ -42,6 +44,11 @@ angular
             function bindWheel(e) {
                 if (e.originalEvent) {
                     e = e.originalEvent;
+                }
+
+                if (ignoreClassName &&
+                    angular.element(e.target).hasClass(ignoreClassName)) {
+                    return;
                 }
 
                 if (e.deltaX) {
